@@ -16,7 +16,7 @@ class AriaService {
     }
     catch(err) {
       console.log(err);
-      result false;
+      result = false;
     }
 
 

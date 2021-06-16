@@ -1,0 +1,5 @@
+yarn run v1.22.10
+$ node -r dotenv/config ./src/application.js
+Start of application on port 3000
+The document validates according to the specified schema(s).
+

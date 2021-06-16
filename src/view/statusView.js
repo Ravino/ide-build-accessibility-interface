@@ -13,6 +13,11 @@ class StatusView {
   }
 
 
+  addDescription(description) {
+    this.description = description;
+  }
+
+
   addData(data) {
     this.data = data;
     return undefined;

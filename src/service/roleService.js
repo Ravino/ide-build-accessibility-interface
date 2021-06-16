@@ -16,7 +16,7 @@ class RoleService {
     }
     catch(err) {
       console.log(err);
-      result false;
+      result = false;
     }
 
 

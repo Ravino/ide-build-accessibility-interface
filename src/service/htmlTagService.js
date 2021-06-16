@@ -16,7 +16,7 @@ class HtmlTagService {
     }
     catch(err) {
       console.log(err);
-      result false;
+      result = false;
     }
 
 

@@ -21,15 +21,30 @@ class DomService {
     }
 
 
-    console.log(result);
+    if('The document validates according to the specified schema(s).\n' == result) {
+      result = true;
+    }
+
+
     return result;
   }
 
 
   parse(str) {
-    return htmlDomParser(str);
+
+    let domTree= {};
+    try {
+      domTree = htmlDomParser(str);
+    }
+    catch(err) {
+      console.log(err);
+      return false;
+    }
+
+
+    return domTree;
   }
 }
 
 
-module.exports = new DomService();
+module.exports = DomService;
