@@ -17,11 +17,33 @@ class AccessibilityService {
   }
 
 
-  treeToGraph(domTree) {}
+  treeToGraph(domTree) {
+
+    let result = true;
+    try {
+      this.accessibilityTree = jsonCycle.parse(jsonCycle.stringify(domTree));
+    }
+    catch(err) {
+      console.log(err);
+      result = false;
+    }
+
+
+    return result;
+  }
 
 
   puckGraphString() {
-    const graphString = jsonCycle.stringify(this.accessibilityTree);
+    let graphString = false;
+    try {
+      graphString = jsonCycle.stringify(this.accessibilityTree);
+    }
+    catch(err) {
+      console.log(err);
+      graphString = false;
+    }
+
+
     return graphString;
   }
 }

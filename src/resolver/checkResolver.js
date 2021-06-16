@@ -35,7 +35,6 @@ class CheckResolver {
       this.addDescription('internal error build abstract syntax and document object model tree');
       return this.statusView;
     }
-    console.log(domTree);
 
 
     const treeToGraph = this.accessibilityService.treeToGraph(domTree);
@@ -47,8 +46,8 @@ class CheckResolver {
 
 
     const graphString = this.accessibilityService.puckGraphString();
-    if(graphString) {
-      this.statusVuiew.addStatus('notSuccess');
+    if(!graphString) {
+      this.statusView.addStatus('notSuccess');
       this.statusView.addDescription('Internal error puck cycle tree to graph string');
       return this.statusView;
     }
