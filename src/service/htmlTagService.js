@@ -1,24 +1,28 @@
 const tarantool = require("../config/tarantool");
 
 
-class RoleService {
+class HtmlTagService {
 
   async find(name) {
 
+    const bindParams = [
+      name
+    ];
+
+
     let result;
     try {
-      result = await tarantool.sql(`select role_id from roles where name = ?`, bindParams);
+      result = await tarantool.sql(`select * from html_tags where name = ?`, bindParams);
     }
     catch(err) {
       console.log(err);
-      return false;
+      result false;
     }
 
 
-    return true;
+    return result;;
   }
 }
 
 
-const roleService = new RoleService()
-module.exports = roleService;
+module.exports = new HtmlTagService();
