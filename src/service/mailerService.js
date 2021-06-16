@@ -68,11 +68,10 @@ this.mailerLanguageDefault = global.process.env.MAILER_LANGUAGE_DEFAULT || '';
   }
 
 
-  async generatorMessage(typeTemplate, password, verificationToken, language) {
+  async generatorMessage(typeTemplate, uniqueId, language) {
 
     const args = {
-      password,
-      verificationToken
+      uniqueId
     };
 
 
@@ -106,14 +105,14 @@ this.mailerLanguageDefault = global.process.env.MAILER_LANGUAGE_DEFAULT || '';
   }
 
 
-  async sender(typeTemplate, toEmail, password, verificationToken, language) {
+  async sender(typeTemplate, toEmail, uniqueId, language) {
 
     if(!this.account) {
       await this.initialization();
     }
 
 
-    const message = await this.generatorMessage(typeTemplate, password, verificationToken, language);
+    const message = await this.generatorMessage(typeTemplate, uniqueId, language);
     message.to = toEmail;
 
 

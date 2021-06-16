@@ -1,5 +1,6 @@
 const escapeHtml = require('escape-html');
 const trim = require('trim');
+const uniqueId = require('uniqid');
 
 const mailerService = require('../service/mailerService');
 
@@ -58,6 +59,7 @@ class SupportResolver {
     } 
 
 
+    this.mailerService.sender('appeal', email, uniqueId(), '');
     this.statusView.addStatus('success');
     this.statusView.addDescription('');
     return this.statusView;
