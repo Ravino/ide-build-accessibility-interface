@@ -38,7 +38,25 @@ class CheckResolver {
     console.log(domTree);
 
 
-    return domTree;
+    const treeToGraph = this.accessibilityService.treeToGraph(domTree);
+    if(!treeToGraph) {
+      this.statusView.addStatus('notSuccess');
+      this.statusView.addDescription('Internal error in build dom tree to graph accessibility');
+      return this.statusView;
+    }
+
+
+    const graphString = this.accessibilityService.puckGraphString();
+    if(graphString) {
+      this.statusVuiew.addStatus('notSuccess');
+      this.statusView.addDescription('Internal error puck cycle tree to graph string');
+      return this.statusView;
+    }
+
+
+    this.statusView.addStatus('success');
+    this.statusView.addData(graphString);
+    return this.statusView;
   }
 
 

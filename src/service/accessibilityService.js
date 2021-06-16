@@ -20,7 +20,7 @@ class AccessibilityService {
   treeToGraph(domTree) {}
 
 
-  packGraphString() {
+  puckGraphString() {
     const graphString = jsonCycle.stringify(this.accessibilityTree);
     return graphString;
   }
