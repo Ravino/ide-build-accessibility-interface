@@ -1,5 +1,7 @@
 const {Router} = require("express");
+
 const checkRouter = require("../router/checkRouter");
+const supportRouter = require('../router/supportRouter');
 const otherRouter = require("../router/otherRouter");
 
 
@@ -10,6 +12,9 @@ router.use("/check",
   checkRouter.handler
 );
 
+router.use("/support",
+  supportRouter.handler
+);
 
 router.use("/*",
   otherRouter.handler

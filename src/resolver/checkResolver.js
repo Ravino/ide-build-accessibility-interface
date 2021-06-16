@@ -55,6 +55,7 @@ class CheckResolver {
 
 
     this.statusView.addStatus('success');
+    this.statusView.addDescription('');
     this.statusView.addData(graphString);
     return this.statusView;
   }
