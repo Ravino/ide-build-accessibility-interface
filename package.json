@@ -24,7 +24,6 @@
     "html-dom-parser": "^1.0.1",
     "html-validator": "^5.1.17",
     "json-cycle": "^1.3.0",
-    "mini-html-parser": "0.0.3",
     "router": "^1.3.5",
     "tarantool-driver": "^3.0.6",
     "trim": "^1.0.1"
