@@ -25,6 +25,7 @@ class CheckResolver {
     if(validate !== true) {
       this.statusView.addStatus('invalidSyntax');
       this.statusView.addDescription(validate);
+      this.statusView.addData(null);
       return this.statusView;
     }
 
@@ -33,6 +34,7 @@ class CheckResolver {
     if(!domTree) {
       this.statusView.addStatus('notSuccess');
       this.addDescription('internal error build abstract syntax and document object model tree');
+      this.statusView.addData(null);
       return this.statusView;
     }
 
@@ -41,6 +43,7 @@ class CheckResolver {
     if(!treeToGraph) {
       this.statusView.addStatus('notSuccess');
       this.statusView.addDescription('Internal error in build dom tree to graph accessibility');
+      this.statusView.addData(null);
       return this.statusView;
     }
 
@@ -49,6 +52,7 @@ class CheckResolver {
     if(!graphString) {
       this.statusView.addStatus('notSuccess');
       this.statusView.addDescription('Internal error puck cycle tree to graph string');
+      this.statusView.addData(null);
       return this.statusView;
     }
 
