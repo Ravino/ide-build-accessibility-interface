@@ -62,6 +62,7 @@ class SupportResolver {
     this.mailerService.sender('appeal', email, uniqueId(), '');
     this.statusView.addStatus('success');
     this.statusView.addDescription('');
+    this.statusView.addData(null);
     return this.statusView;
   }
 
