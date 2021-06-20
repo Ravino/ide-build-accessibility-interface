@@ -1,0 +1,39 @@
+{
+  "name": "ide-build-accessibility-interface-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r dotenv/config ./src/application.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ravino/ide-build-accessibility-interface-backend.git"
+  },
+  "author": "Ravino Doul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ravino/ide-build-accessibility-interface-backend/issues"
+  },
+  "homepage": "https://github.com/Ravino/ide-build-accessibility-interface-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
+    "email-validator": "^2.0.4",
+    "escape-html": "^1.0.3",
+    "express": "^4.17.1",
+    "html-dom-parser": "^1.0.1",
+    "html-validator": "^5.1.17",
+    "json-cycle": "^1.3.0",
+    "nodemailer": "^6.6.1",
+    "pug": "^3.0.2",
+    "rfdc": "^1.3.0",
+    "router": "^1.3.5",
+    "tarantool-driver": "^3.0.6",
+    "trim": "^1.0.1",
+    "uniqid": "^5.3.0"
+  },
+  "devDependencies": {}
+}
