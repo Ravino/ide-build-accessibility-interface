@@ -4,15 +4,33 @@ version: "3.7"
 services:
   ide-gateway:
     image: ide-gateway
-    build: ./
+    build: ./gateway/
     container_name: ide-gateway
     restart: unless-stopped
     env_file:
-      - ./.env
+      - ./gateway/.env
     ports:
       - 127.0.0.50:8080:3000
     networks:
       - ide
+    depends_on:
+      - ide-tarantool
+
+
+  ide-registration-authorization:
+    image: ide-registration-authorization
+    build: ./registration-authorization/
+    container_name: ide-registration-authorization
+    restart: unless-stopped
+    env_file:
+      - ./registration-authorization/.env
+    ports:
+      - 127.0.0.50:8090:3000
+    networks:
+      - ide
+    depends_on:
+      - ide-redis
+      - ide-tarantool
 
 
   ide-tarantool:
@@ -23,6 +41,18 @@ services:
       - 127.0.0.50:3301:3301
     volumes:
       - /databases/ide/tarantool:/var/lib/tarantool
+    networks:
+      - ide
+
+
+  ide-redis:
+    image: redis
+    container_name: ide-redis
+    restart: unless-stopped
+    ports:
+      - 127.0.0.50:6379:6379
+    volumes:
+      - /databases/ide/redis:/data
     networks:
       - ide
 
