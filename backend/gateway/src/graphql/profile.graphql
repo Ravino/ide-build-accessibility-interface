@@ -1,0 +1,5 @@
+type Profile {
+  profileId: ID!
+  displayName: String!
+  email: String!
+}

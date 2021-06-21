@@ -1,0 +1,5 @@
+type RequestReport {
+  get: Report
+  getList: ListReport!
+  select: ListReport!
+}

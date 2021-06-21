@@ -1,0 +1,5 @@
+type ListReport {
+  cursor: String!
+  count: Int!
+  items: [Report]!
+}

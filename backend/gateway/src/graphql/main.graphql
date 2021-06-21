@@ -1,0 +1,30 @@
+type ListReport {
+  cursor: String!
+  count: Int!
+  items: [Report]!
+}
+
+type Profile {
+  profileId: ID!
+  displayName: String!
+  email: String!
+}
+
+type Query {
+  requestProfile: RequestProfile!
+  requestReport: RequestReport!
+}
+
+type Report {
+  reportId: ID!
+}
+
+type RequestProfile {
+  get: Profile
+}
+
+type RequestReport {
+  get: Report
+  getList: ListReport!
+  select: ListReport!
+}
