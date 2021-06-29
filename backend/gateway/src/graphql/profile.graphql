@@ -1,5 +1,9 @@
 type Profile {
   profileId: ID!
   displayName: String!
+  firstname: String!
+  lastname: String!
   email: String!
+  createdAt: ZonedDateTime!
+  updatedAt: ZonedDateTime!
 }

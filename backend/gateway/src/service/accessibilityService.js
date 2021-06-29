@@ -33,6 +33,16 @@ class AccessibilityService {
   }
 
 
+  async check(root = this.accessibilityTree) {
+
+let i = 1;
+    for(let node of root) {console.log(node); console.log(i);i++}
+
+
+    return undefined;
+  }
+
+
   puckGraphString() {
     let graphString = false;
     try {

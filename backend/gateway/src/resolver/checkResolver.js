@@ -3,7 +3,8 @@ const trim = require('trim');
 
 const DomService = require('../service/domService');
 const AccessibilityService = require('../service/accessibilityService');
-
+const {SaveFileService} = require('../service/saveFileService');
+const {ReportService} = require('../service/reportService');
 const StatusView = require('../view/statusView');
 
 
@@ -12,7 +13,46 @@ class CheckResolver {
   constructor() {
     this.domService = new DomService ();
     this.accessibilityService = new AccessibilityService();
+    this.saveFileService = new SaveFileService();
+    this.reportService = ReportService;
     this.statusView = new StatusView();
+  }
+
+
+  async report(str) {
+
+    const nameFile = await this.saveFileService.genName();
+    if(!nameFile) {
+      console.log('Report not create');
+      return undefined;
+    }
+
+
+    const pathFile = await this.saveFileService.getPath(nameFile);
+    if(!pathFile) {
+      console.log('Report not create');
+      return undefined;
+    }
+
+
+    const statusSave = await this.saveFileService.save(pathFile, str);
+    if(!statusSave) {
+      console.log('Report not create');
+      return undefined;
+    }
+
+
+    const statusCreateReport = await this.reportService.create(str);
+    if(!statusCreateReport) {
+      console.log('Report not create');
+      return undefined;
+    }
+
+
+    console.log(statusCreateReport);
+
+
+    return undefined;
   }
 
 
@@ -55,6 +95,9 @@ class CheckResolver {
       this.statusView.addData(null);
       return this.statusView;
     }
+
+
+    this.report(str);
 
 
     this.statusView.addStatus('success');

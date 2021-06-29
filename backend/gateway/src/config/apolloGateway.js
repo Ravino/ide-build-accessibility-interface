@@ -15,6 +15,10 @@ const typeDefs = gql`${ schemaContent }`;
 const resolvers = {
   Query: {
     requestProfile: () => QueryResolver.requestProfileResolver,
+  },
+
+  RequestProfile: {
+    get: (parent, args) => parent.get(1)
   }
 };
 
