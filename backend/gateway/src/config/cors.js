@@ -2,7 +2,7 @@ const cors = require('cors');
 
 const conf = {
   credentials: true,
-  origin: global.process.env.CORS_ORIGIN || '*'
+  origin: String(global.process.env.CORS_ORIGIN).split('|')
 };
 
 
