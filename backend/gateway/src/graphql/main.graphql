@@ -21,6 +21,11 @@ type Query {
 
 type Report {
   reportId: ID!
+  name: String!
+  body: String!
+  url: String!
+  createdAt: ZonedDateTime!
+  updatedAt: ZonedDateTime!
 }
 
 type RequestProfile {
@@ -28,9 +33,9 @@ type RequestProfile {
 }
 
 type RequestReport {
-  get: Report
-  getList: ListReport!
-  select: ListReport!
+  get(id: Int!): Report
+  getList(size: Int!): ListReport!
+  select(cursor: String!, offset: Int!): ListReport!
 }
 
 scalar ZonedDateTime

@@ -1,5 +1,5 @@
 type RequestReport {
-  get: Report
-  getList: ListReport!
-  select: ListReport!
+  get(id: Int!): Report
+  getList(size: Int!): ListReport!
+  select(cursor: String!, offset: Int!): ListReport!
 }
