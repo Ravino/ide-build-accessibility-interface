@@ -33,10 +33,52 @@ class AccessibilityService {
   }
 
 
-  async check(root = this.accessibilityTree) {
+  async validator(node) {
 
-let i = 1;
-    for(let node of root) {console.log(node); console.log(i);i++}
+    if(node.type !== 'tag') {
+      return undefined;
+    }
+
+
+    const accessTag = await this.htmlTagService.getByNameField('name', node.name);
+    if(!accessTag) {
+      node.accessibility = false;
+      return undefined;
+    }
+
+
+    if(!node.attribs.role) {
+      node.accessibility = true;
+      return undefined;
+    }
+
+
+    const accessRole = await this.roleService.getByNameField('name', node.attribs.role || '');
+    if(!accessRole) {
+      node.accessibility = false;
+      return undefined;
+    }
+
+
+    node.accessibility = true;
+    return undefined;
+  }
+
+
+  async check(node = this.accessibilityTree[1]) {
+
+    if(!node.children) {
+      return undefined;
+    }
+
+
+    await this.validator(node);
+
+
+    for(let i = 0; i < node.children.length; i++) {
+      await this.check(node.children[i]);
+    }
+
 
 
     return undefined;

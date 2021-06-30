@@ -49,7 +49,7 @@ class CheckResolver {
     }
 
 
-    console.log(statusCreateReport);
+//    console.log(statusCreateReport);
 
 
     return undefined;
@@ -86,6 +86,9 @@ class CheckResolver {
       this.statusView.addData(null);
       return this.statusView;
     }
+
+
+    await this.accessibilityService.check();
 
 
     const graphString = this.accessibilityService.puckGraphString();

@@ -3,16 +3,16 @@ const tarantool = require("../config/tarantool");
 
 class AriaService {
 
-  async find(name) {
+  async getByNameField(field, value) {
 
     const bindParams = [
-      name
+      value
     ];
 
 
     let result;
     try {
-      result = await tarantool.sql(`select * from attribute_arias where name = ?`, bindParams);
+      result = await tarantool.sql(`select * from attribute_arias where ${field} = ?`, bindParams);
     }
     catch(err) {
       console.log(err);

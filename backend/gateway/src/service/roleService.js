@@ -4,16 +4,16 @@ const tarantool = require("../config/tarantool");
 
 class RoleService {
 
-  async find(name) {
+  async getByNameField(field, value) {
 
     const bindParams = [
-      name
+      value
     ];
 
 
     let result;
     try {
-      result = await tarantool.sql(`select * from attribute_roles where name = ?`, bindParams);
+      result = await tarantool.sql(`select * from attribute_roles where ${field} = ?`, bindParams);
     }
     catch(err) {
       console.log(err);

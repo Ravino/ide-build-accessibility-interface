@@ -3,16 +3,16 @@ const tarantool = require("../config/tarantool");
 
 class HtmlTagService {
 
-  async find(name) {
+  async getByNameField(field, value) {
 
     const bindParams = [
-      name
+      value
     ];
 
 
     let result;
     try {
-      result = await tarantool.sql(`select * from html_tags where name = ?`, bindParams);
+      result = await tarantool.sql(`select * from html_tags where ${field} = ?`, bindParams);
     }
     catch(err) {
       console.log(err);
