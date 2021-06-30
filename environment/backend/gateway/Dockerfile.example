@@ -1,4 +1,4 @@
-FROM node:14
+FROM buildkite/puppeteer
 
 ENV NODE_ENV=
 ENV TARANTOOL_PORT=
