@@ -22,14 +22,20 @@ class SaveFileService {
   }
 
 
-  async genName() {
-    const name = uniqId();
-    return name;
+  async genName(type) {
+    if(type == 'random') {
+      return uniqId();
+    }
+
+
+    if(type == 'time') {
+      return String(new Date());
+    }
   }
 
 
-  async getPath(name) {
-    const pathName = path.resolve(`./files/${ name }.html`);
+  async getPath(dst, name, ext) {
+    const pathName = path.resolve(`./${dst}/${name}.${ext}`);
     return pathName;
   }
 

@@ -11,6 +11,9 @@ services:
       - ./gateway/.env
     ports:
       - 127.0.0.50:8080:3000
+    volumes:
+      - ide-accessibility-files:/www/app/files
+      - ide-accessibility-reports:/www/app/reports
     networks:
       - ide
     depends_on:
@@ -57,6 +60,27 @@ services:
       - ide
 
 
+  ide-serve-static:
+    image: nginx
+    container_name: ide-serve-static
+    restart: unless-stopped
+    ports:
+      - 127.0.0.50:9010:80
+    volumes:
+      - ./serve-static:/etc/nginx/conf.d
+      - ide-accessibility-files:/mnt/files
+      - ide-accessibility-reports:/mnt/reports
+    networks:
+      - ide
+    depends_on:
+      - ide-gateway
+
+
 networks:
   ide:
     driver: bridge
+
+
+volumes:
+  ide-accessibility-files:
+  ide-accessibility-reports:

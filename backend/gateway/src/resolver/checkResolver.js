@@ -21,14 +21,14 @@ class CheckResolver {
 
   async report(str) {
 
-    const nameFile = await this.saveFileService.genName();
+    const nameFile = await this.saveFileService.genName('random');
     if(!nameFile) {
       console.log('Report not create');
       return undefined;
     }
 
 
-    const pathFile = await this.saveFileService.getPath(nameFile);
+    const pathFile = await this.saveFileService.getPath('files', nameFile, 'html');
     if(!pathFile) {
       console.log('Report not create');
       return undefined;
@@ -42,14 +42,24 @@ class CheckResolver {
     }
 
 
-    const statusCreateReport = await this.reportService.create(str);
+    const statusCreateReport = await this.reportService.create(nameFile);
     if(!statusCreateReport) {
       console.log('Report not create');
       return undefined;
     }
 
 
-//    console.log(statusCreateReport);
+    console.log(statusCreateReport);
+
+
+    const statusSaveReport = await this.reportService.save(1, statusCreateReport);
+    if(!statusSaveReport) {
+      console.log('Report not created');
+      return undefined;
+    }
+
+
+    console.log(statusSaveReport);
 
 
     return undefined;
