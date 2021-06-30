@@ -4,3 +4,4 @@ Dockerfile
 docker-compose.yml
 package-lock.json
 lib
+backend/serve-static/*.conf
