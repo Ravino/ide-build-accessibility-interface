@@ -1,6 +1,6 @@
 const {merge} = require('object-mapper');
 
-module.exports.mergeAsync = async (src, mapping, onNull) => {
+async function mergeAsync(src, mapping, onNull) {
 
   try {
     let result = await src;
@@ -21,7 +21,7 @@ module.exports.mergeAsync = async (src, mapping, onNull) => {
 }
 
 
-module.exports.mergeListAsync = async (src, mapping, onNull) => {
+async function mergeListAsync(src, mapping, onNull) {
 
   try {
     let items = await src;
@@ -42,3 +42,7 @@ module.exports.mergeListAsync = async (src, mapping, onNull) => {
     }
   }
 }
+
+
+module.exports.mergeAsync = mergeAsync;
+module.exports.mergeListAsync = mergeListAsync;
