@@ -11,6 +11,73 @@ class ReportService {
   }
 
 
+  async count(userId) {
+
+    const bindParams = [
+      userId
+    ];
+
+
+    let result;
+    try {
+      result = await tarantool.sql(`select count(report_id) from reports where user_id = ?`, bindParams);
+    }
+    catch(err) {
+      console.log(err);
+      return false;
+    }
+
+
+    console.log(result);
+    return result[0].COLUMN_1;
+  }
+
+
+  async getByUserReportId(userId, reportId) {
+
+    const bindParams = [
+      userId,
+      reportId
+    ];
+
+
+    let result;
+    try {
+      result = await tarantool.sql(`select * from reports where user_id = ? and report_id = ?`, bindParams);
+    }
+    catch(err) {
+      console.log(err);
+      result = false;
+    }
+
+
+    return result[0];
+  }
+
+
+  async getListByUserReportId(userId, size, offset) {
+
+    const bindParams = [
+      userId,
+      size,
+      offset
+    ];
+
+
+    let result;
+    try {
+      result = await tarantool.sql(`select * from reports where user_id = ? order by report_id limit ? offset ?`, bindParams);
+    }
+    catch(err) {
+      console.log(err);
+      result = false;
+    }
+
+
+    return result;
+  }
+
+
   async create(nameFile) {
 
     let result = false;

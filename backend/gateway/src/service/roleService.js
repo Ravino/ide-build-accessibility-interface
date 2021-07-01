@@ -21,7 +21,7 @@ class RoleService {
     }
 
 
-    return result;;
+    return result[0];;
   }
 
 

@@ -24,8 +24,8 @@ const resolvers = {
 
 
   RequestReport: {
-    get: (parent, args, context) => parent.get(1, args.id),
-    getList: (parent, args, context) => parent.getList(1, args.size),
+    get: (parent, args, context) => parent.get(context.user.userId, args.id),
+    getList: (parent, args, context) => parent.getList(context.user.userId, args.size),
     select: (parent, args, context) => parent.select(context.user.userId, args.cursor, args.offset)
   },
 

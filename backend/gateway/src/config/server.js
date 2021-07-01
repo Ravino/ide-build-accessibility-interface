@@ -12,5 +12,6 @@ module.exports = server;
 corsInitialization(server);
 cookieParserInitialization(server);
 bodyParserInitialization(server);
-apolloGatewayInitialization(server);
+
 routerInitialization(server);
+apolloGatewayInitialization(server);

@@ -20,7 +20,7 @@ class HtmlTagService {
     }
 
 
-    return result;;
+    return result[0];
   }
 }
 

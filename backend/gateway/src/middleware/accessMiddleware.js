@@ -1,6 +1,8 @@
 const trim = require('trim');
 const { confSetCookie } = require('../config/cookieParser');
-const JWTService = require('../service/jwtService');
+
+
+const {JWTService} = require('../service/jwtService');
 const StatusView = require('../view/statusView');
 
 
@@ -8,6 +10,7 @@ class AccessMiddleware {
 
   constructor() {
     this.jwtService = JWTService;
+    this.statusView = new StatusView();
   }
 
 
@@ -32,17 +35,30 @@ class AccessMiddleware {
     }
 
 
+    res.locals.user = await this.decode(accessToken);
+    next();
+    return undefined;
+  }
+
+
+  async getData(req, res, next) {
+    let accessToken = req.signedCookies[confSetCookie.nameCookie] || '';
+    accessToken = trim(accessToken);
+    res.locals.user = await this.decode(accessToken)
+    next();
+    return undefined;
+  }
+
+
+  async decode(accessToken) {
+
     const result = await this.jwtService.decode(accessToken);
     if(!result) {
-      this.statusView.addStatus('notAuthenticate');
-      res.json(this.statusView);
       return undefined;
     }
 
 
-    res.locals.user = result;
-    next();
-    return undefined;
+    return result;
   }
 
 
@@ -53,4 +69,4 @@ class AccessMiddleware {
 }
 
 
-module.exports = new AccessMiddleware();
+module.exports = AccessMiddleware;
