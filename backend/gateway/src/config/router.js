@@ -19,8 +19,7 @@ router.use("/support",
 );
 
 router.use('/graphql',
-  graphqlRouter.middleware,
-  graphqlRouter.handler
+  graphqlRouter.middleware
 );
 
 /*
