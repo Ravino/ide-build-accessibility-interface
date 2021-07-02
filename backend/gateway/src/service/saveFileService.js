@@ -1,7 +1,11 @@
 const {unlink} = require('fs');
+const {promisify} = require('util');
 const path = require('path');
 const uniqId = require('uniqid');
 const write = require('write');
+
+
+const pUnlink = promisify(unlink);
 
 
 class SaveFileService {
@@ -44,7 +48,7 @@ class SaveFileService {
 
     let result = true;
     try {
-      await unlink(pathName);
+      await pUnlink(pathName);
     }
     catch(err) {
       console.log(err);
