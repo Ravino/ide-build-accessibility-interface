@@ -19,7 +19,7 @@ class CheckResolver {
   }
 
 
-  async report(str) {
+  async report(str, user) {
 
     const nameFile = await this.saveFileService.genName('random');
     if(!nameFile) {
@@ -49,24 +49,18 @@ class CheckResolver {
     }
 
 
-    console.log(statusCreateReport);
-
-
-    const statusSaveReport = await this.reportService.save(1, statusCreateReport);
+    const statusSaveReport = await this.reportService.save(user.USER_ID, statusCreateReport);
     if(!statusSaveReport) {
       console.log('Report not created');
       return undefined;
     }
 
 
-    console.log(statusSaveReport);
-
-
     return undefined;
   }
 
 
-  async parse(str) {
+  async parse(str, user) {
 
     str = trim(str);
 
@@ -110,7 +104,9 @@ class CheckResolver {
     }
 
 
-    this.report(str);
+    if(user) {
+      this.report(str, user);
+    }
 
 
     this.statusView.addStatus('success');
@@ -121,7 +117,7 @@ class CheckResolver {
 
 
   async done(req, res) {
-    const result = await this.parse(req.body.html || '');
+    const result = await this.parse(req.body.html || '', res.locals.user);
     res.json(result);
     return undefined;
   }
