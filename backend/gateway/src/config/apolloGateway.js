@@ -19,14 +19,14 @@ const resolvers = {
   },
 
   RequestProfile: {
-    get: (parent, args, context) => parent.get(context.user.userId)
+    get: (parent, args, context) => parent.get(context.user.USER_ID)
   },
 
 
   RequestReport: {
-    get: (parent, args, context) => parent.get(context.user.userId, args.id),
-    getList: (parent, args, context) => parent.getList(context.user.userId, args.size),
-    select: (parent, args, context) => parent.select(context.user.userId, args.cursor, args.offset)
+    get: (parent, args, context) => parent.get(context.user.USER_ID, args.id),
+    getList: (parent, args, context) => parent.getList(context.user.USER_ID, args.size),
+    select: (parent, args, context) => parent.select(context.user.USER_ID, args.cursor, args.offset)
   },
 
 
