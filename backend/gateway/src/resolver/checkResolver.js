@@ -45,10 +45,12 @@ class CheckResolver {
     const statusCreateReport = await this.reportService.create(nameFile);
     if(!statusCreateReport) {
       console.log('Report not create');
+      this.saveFileService.remove(pathFile);
       return undefined;
     }
 
 
+    this.saveFileService.remove(pathFile);
     const statusSaveReport = await this.reportService.save(user.USER_ID, statusCreateReport);
     if(!statusSaveReport) {
       console.log('Report not created');
