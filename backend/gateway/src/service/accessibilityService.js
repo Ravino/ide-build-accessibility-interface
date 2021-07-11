@@ -40,7 +40,9 @@ class AccessibilityService {
     }
 
 
+    node.accessibility = false;
     const accessTag = await this.htmlTagService.getByNameField('name', node.name);
+    console.log(accessTag);
     if(!accessTag) {
       node.accessibility = false;
       return undefined;
@@ -67,12 +69,12 @@ class AccessibilityService {
 
   async check(node = this.accessibilityTree[1]) {
 
+    await this.validator(node);
+
+
     if(!node.children) {
       return undefined;
     }
-
-
-    await this.validator(node);
 
 
     for(let i = 0; i < node.children.length; i++) {
